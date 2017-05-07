@@ -3,7 +3,7 @@ An Emulator for a simplified assembly language.
 
 Currently a very simple prototype using Python. Sourcecode is written in German. 
 
-The assembler loads up a program written in a file `input.txt` and outputs the result in `output.txt` in the same folder.
+The assembler (`main.py`) loads up a program written in a file `input.txt` and outputs the result in `output.txt` in the same folder.
 It currently supports a language following this format: 
 `(line number) (command|number)`, e.g. 
 ```
