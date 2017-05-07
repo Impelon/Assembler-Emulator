@@ -18,15 +18,16 @@ speicher.vonFestplatteLaden("input.txt")
 
 print speicher.zellen
 
-while True:
-    d = datenbus.speicher.zellen[adressbus.befehlszaehler.adresse].daten.split(" ", 1)
-    befehlsregister.befehl = d[0]
-    if len(d) <= 1:
-        befehlsregister.adresse = ""
-    else:
-        befehlsregister.adresse = d[1]
-    datenbus.befehlszaehler.adresse += 1
-    if not befehlsregister.parse():
-        break
-    
-speicher.aufFestplatteSpeichern("output.txt")
+try:
+    while True:
+        d = datenbus.speicher.zellen[adressbus.befehlszaehler.adresse].daten.split(" ", 1)
+        befehlsregister.befehl = d[0]
+        if len(d) <= 1:
+            befehlsregister.adresse = ""
+        else:
+            befehlsregister.adresse = d[1]
+        datenbus.befehlszaehler.adresse += 1
+        if not befehlsregister.parse():
+            break
+finally:
+    speicher.aufFestplatteSpeichern("output.txt")

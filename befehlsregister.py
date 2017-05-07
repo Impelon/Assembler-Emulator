@@ -11,12 +11,12 @@ class Befehlsregister:
             if self.adresse[0] == "#":
                 self.datenbus.akku.speicher = int(self.adresse[1:])
             elif self.adresse[0] == "(":
-                self.datenbus.akku.speicher = int(self.adressbus.speicher.zellen[self.adressbus.speicher.zellen[int(self.adresse)].daten].daten)
+                self.datenbus.akku.speicher = int(self.adressbus.speicher.zellen[int(self.adressbus.speicher.zellen[int(self.adresse[1:-1])].daten)].daten)
             else:
                 self.datenbus.akku.speicher = int(self.adressbus.speicher.zellen[int(self.adresse)].daten)
         elif self.befehl.upper() == "STA":
             if self.adresse[0] == "(":
-                self.adressbus.speicher.zellen[self.adressbus.speicher.zellen[int(self.adresse)].daten].daten = str(self.datenbus.akku.speicher)
+                self.adressbus.speicher.zellen[int(self.adressbus.speicher.zellen[int(self.adresse[1:-1])].daten)].daten = str(self.datenbus.akku.speicher)
             else:
                 self.adressbus.speicher.zellen[int(self.adresse)].daten = str(self.datenbus.akku.speicher)
         elif self.befehl.upper() == "ADD":
@@ -50,6 +50,6 @@ class Befehlsregister:
 
     def _jump(self):
         if self.adresse[0] == "(":
-            self.datenbus.befehlszaehler.adresse = int(self.adressbus.speicher.zellen[int(self.adresse)].daten)
+            self.datenbus.befehlszaehler.adresse = int(self.adressbus.speicher.zellen[int(self.adresse[1:-1])].daten)
         else:
             self.datenbus.befehlszaehler.adresse = int(self.adresse)
